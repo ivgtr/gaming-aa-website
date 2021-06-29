@@ -2,7 +2,7 @@
   box-sizing: border-box;
   width: 200%;
   min-height: 100px;
-  padding: 8px;
+  padding: 12px;
   margin-top: 8px;
   margin-bottom: -200px;
   overflow: hidden;
@@ -20,7 +20,7 @@
 .gaming {
   font-size: 1.2rem;
   line-height: 1.2rem;
-  white-space: pre-wrap;
+  white-space: nowrap;
   background: -webkit-linear-gradient(0deg, #40e0d0, #ff8c00, #ff0080);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
