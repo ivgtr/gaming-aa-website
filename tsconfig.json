@@ -1,12 +1,9 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "jsx": "react",
+    "types": ["@emotion/react/types/css-prop"],
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -26,12 +23,6 @@
     "noEmitOnError": true,
     "resolveJsonModule": true
   },
-  "include": [
-    "./src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "lib",
-    "dist"
-  ]
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules", "lib", "dist"]
 }
