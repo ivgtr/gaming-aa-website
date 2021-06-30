@@ -1,10 +1,12 @@
 @font-face {
-  font-family: 'Saitamaar';
-  src: url('/fonts/Saitamaar.woff2') format('woff2'), url('/fonts/Saitamaar.woff') format('woff'),
-    url('/fonts/Saitamaar.ttf') format('ttf');
+  font-family: "Saitamaar";
+  src: url("/fonts/Saitamaar.woff2") format("woff2"), url("/fonts/Saitamaar.woff") format("woff"),
+    url("/fonts/Saitamaar.ttf") format("ttf");
   font-display: swap;
 }
 
 body {
-  font-family: 'Saitamaar';
+  font-family: "Saitamaar", "Noto Sans JP", -apple-system, blinkmacsystemfont, ヒラギノ角ゴ pro w3,
+    hiragino kaku gothic pro, roboto, yugothic, yu gothic, 游ゴシック体, 游ゴシック, メイリオ,
+    meiryo, ｍｓ ｐゴシック, ms pgothic, sans-serif;
 }

@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 
 type Props = {
-  onClick: () => void
-}
+  onClick: () => void;
+};
 
 export const Button: React.FC<Props> = (props) => {
   return (
@@ -12,5 +12,5 @@ export const Button: React.FC<Props> = (props) => {
     >
       {props.children}
     </button>
-  )
-}
+  );
+};
