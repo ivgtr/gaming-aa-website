@@ -20,7 +20,7 @@ export default function MainPage() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={envJson.url} />
         <meta property="og:site_name" content={title} />
-        <meta property="og:image" content="/api/ogp" />
+        <meta property="og:image" content={`${envJson.url}api/ogp`} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@ivgtr" />
         <link rel="shortcut icon" href="/favicon.ico" />
