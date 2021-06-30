@@ -3,14 +3,13 @@ import React from "react";
 import classes from "./Button.module.scss";
 
 type Props = {
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 export const Button: React.FC<Props> = (props) => {
   return (
     <button
       className={classNames(
-        "h-8",
         "leading-8",
         "ml-2",
         "px-2",
@@ -23,6 +22,7 @@ export const Button: React.FC<Props> = (props) => {
         "focus:ring",
         "focus:ring-indigo-200",
         "focus:ring-opacity-50",
+        "break-normal",
         classes.button
       )}
       onClick={props.onClick}

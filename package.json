@@ -15,6 +15,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "vercel-build": "yum install libuuid-devel libmount-devel && cp /lib64/{libuuid,libmount,libblkid}.so.1 node_modules/canvas/build/Release/ && next build",
     "format": "prettier -w ./src/*"
   },
   "devDependencies": {
@@ -35,9 +36,12 @@
     "typescript": "^4.3.4"
   },
   "dependencies": {
+    "canvas": "^2.8.0",
     "classnames": "^2.3.1",
+    "data-uri-to-buffer": "^3.0.1",
     "next": "^11.0.1",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-share": "^4.4.0"
   }
 }
