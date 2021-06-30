@@ -1,0 +1,39 @@
+.textarea {
+  box-sizing: border-box;
+  width: 200%;
+  min-height: 100px;
+  padding: 12px;
+  margin-top: 8px;
+  margin-bottom: -200px;
+  font-size: 2.4rem;
+  line-height: 2.4rem;
+  resize: vertical;
+  border: 2px solid #000;
+  border-radius: 5px;
+  outline: none;
+  transition: border-bottom 0.1s ease-in;
+  transform: scale(0.5);
+  transform-origin: top left;
+}
+
+.gaming {
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  white-space: nowrap;
+  background: -webkit-linear-gradient(
+    0deg,
+    var(--gradient-color, (#40e0d0, #41e081, #e0d041, #ff8c00, #ff0080, #d041e0))
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 1s linear infinite;
+}
+
+@keyframes gradient {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
