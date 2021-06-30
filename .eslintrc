@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "eslint-config-sumikko",
+    "eslint-config-sumikko/ts",
+    "next",
+    "eslint-config-sumikko/prettier"
+  ],
+  "rules": {
+    "arrow-body-style": 0,
+    "react/display-name": 0
+  }
+}

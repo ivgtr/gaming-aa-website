@@ -4,6 +4,14 @@
   "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivgtr/gaming-aa-website.git"
+  },
+  "homepage": "https://github.com/ivgtr/gaming-aa-website#readme",
+  "bugs": {
+    "url": "https://github.com/ivgtr/gaming-aa-website/issues"
+  },
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -15,6 +23,7 @@
     "@types/react-dom": "^17.0.8",
     "autoprefixer": "^10.2.6",
     "eslint": "^7.29.0",
+    "eslint-config-next": "^11.0.1",
     "eslint-config-sumikko": "^1.2.1",
     "postcss": "^8.3.5",
     "prettier": "^2.3.2",
