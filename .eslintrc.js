@@ -7,5 +7,6 @@ module.exports = {
   ],
   rules: {
     "arrow-body-style": 0,
+    "react/display-name": 0,
   },
 };

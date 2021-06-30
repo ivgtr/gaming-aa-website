@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 import sampleJson from "../../assets/json/sample.json";
-import { Button } from "../Button";
+import classes from "./PageContents.module.scss";
+import { PageContentsButtons } from "./PageContentsButtons";
+import { PageContentsPalettes } from "./PageContentsPalettes";
 
 export const PageContents: React.VFC = () => {
+  const { query } = useRouter();
   const [AA, setAA] = useState<string>("");
   const [palette, setPalette] = useState<string[]>([
     "#40e0d0",
@@ -13,7 +17,15 @@ export const PageContents: React.VFC = () => {
     "#d041e0",
   ]);
 
-  console.log(palette);
+  useEffect(() => {
+    document.documentElement.style.setProperty("--gradient-color", palette.join(","));
+  }, [palette]);
+
+  useEffect(() => {
+    if (Object.keys(query) && typeof query?.text === "string") {
+      setAA(decodeURI(query.text));
+    }
+  }, [query]);
 
   return (
     <div className="px-6 overflow-hidden">
@@ -23,6 +35,7 @@ export const PageContents: React.VFC = () => {
           id="aa-input"
           rows={10}
           placeholder="入力してください"
+          className={classes.textarea}
           value={AA}
           onChange={(e) => {
             setAA(e.target.value);
@@ -31,54 +44,16 @@ export const PageContents: React.VFC = () => {
         ></textarea>
       </div>
       <div>
-        {sampleJson.aa_samples.map((sample, index) => {
-          return (
-            <Button
-              onClick={() => {
-                setAA(decodeURI(sample.value));
-              }}
-              key={index}
-            >
-              {sample.title}
-            </Button>
-          );
-        })}
-        <Button
-          onClick={() => {
-            setAA("");
-          }}
-        >
-          リセット
-        </Button>
+        <PageContentsButtons aa_samples={sampleJson.aa_samples} setAA={setAA} />
       </div>
-      <div className="mt-4 flex">
-        {sampleJson.color_samples.map((sample, i) => {
-          return (
-            <div
-              key={i}
-              className="flex ml-2"
-              onClick={() => {
-                setPalette(sample.palette);
-              }}
-            >
-              {sample.palette.map((color, j) => {
-                return (
-                  <span
-                    key={j}
-                    style={{ backgroundColor: color }}
-                    className="h-6 w-6 inline-block"
-                  ></span>
-                );
-              })}
-            </div>
-          );
-        })}
+      <div className="mt-4">
+        <PageContentsPalettes color_samples={sampleJson.color_samples} setPalette={setPalette} />
       </div>
       <div>
-        <p className="py-4">↓</p>
+        <p className="py-4 text-gray-50">↓</p>
       </div>
       <div>
-        <p>
+        <p className={classes.gaming}>
           {AA.split("\n").map((str, index) => (
             <React.Fragment key={index}>
               {str}

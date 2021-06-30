@@ -5,8 +5,6 @@
   font-display: swap;
 }
 
-body {
-  font-family: "Saitamaar", "Noto Sans JP", -apple-system, blinkmacsystemfont, ヒラギノ角ゴ pro w3,
-    hiragino kaku gothic pro, roboto, yugothic, yu gothic, 游ゴシック体, 游ゴシック, メイリオ,
-    meiryo, ｍｓ ｐゴシック, ms pgothic, sans-serif;
-}
+$ff: "Saitamaar", "Noto Sans JP", -apple-system, blinkmacsystemfont, ヒラギノ角ゴ pro w3,
+  hiragino kaku gothic pro, roboto, yugothic, yu gothic, 游ゴシック体, 游ゴシック, メイリオ, meiryo,
+  ｍｓ ｐゴシック, ms pgothic, sans-serif;

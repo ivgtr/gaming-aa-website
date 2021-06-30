@@ -1,7 +1,7 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
 import React from "react";
-import "../assets/styles/styles.scss";
+import "../assets/styles/global.scss";
 
 const App = ({ Component, pageProps }: AppProps) => {
   const title = "gaming AA website";
