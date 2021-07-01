@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from "react";
 import sampleJson from "../../assets/json/sample.json";
+// import { PageContentsPalettes } from "./PageContentsPalettes";
+import { GitHubLink } from "../GitHubLink";
 import { TwitterShare } from "../TwitterShare";
 import classes from "./PageContents.module.scss";
 import { PageContentsButtons } from "./PageContentsButtons";
-import { PageContentsPalettes } from "./PageContentsPalettes";
 
 export const PageContents: React.VFC<{ query?: string }> = ({ query }) => {
   const [AA, setAA] = useState<string>("");
-  const [palette, setPalette] = useState<string[]>([
-    "#40e0d0",
-    "#41e081",
-    "#e0d041",
-    "#ff8c00",
-    "#ff0080",
-    "#d041e0",
-  ]);
+  // const [palette, setPalette] = useState<string[]>([
+  //   "#40e0d0",
+  //   "#41e081",
+  //   "#e0d041",
+  //   "#ff8c00",
+  //   "#ff0080",
+  //   "#d041e0",
+  // ]);
 
-  useEffect(() => {
-    document.documentElement.style.setProperty("--gradient-color", palette.join(","));
-  }, [palette]);
+  // useEffect(() => {
+  //   document.documentElement.style.setProperty("--gradient-color", palette.join(","));
+  // }, [palette]);
 
   useEffect(() => {
     if (query) setAA(decodeURI(query));
@@ -26,7 +27,7 @@ export const PageContents: React.VFC<{ query?: string }> = ({ query }) => {
 
   return (
     <>
-      <div className="px-6 overflow-hidden">
+      <div className="mt-4 px-6 overflow-hidden">
         <div className="overflow-hidden">
           <textarea
             name="aa-input"
@@ -37,24 +38,31 @@ export const PageContents: React.VFC<{ query?: string }> = ({ query }) => {
             value={AA}
             onChange={(e) => {
               setAA(e.target.value);
+              console.log(encodeURI(e.target.value));
             }}
           ></textarea>
         </div>
         <div className="mt-2">
           <PageContentsButtons aa_samples={sampleJson.aa_samples} setAA={setAA} />
         </div>
-        <div className="mt-2">
+        {/* <div className="mt-2">
           <PageContentsPalettes color_samples={sampleJson.color_samples} setPalette={setPalette} />
-        </div>
+        </div> */}
         <div>
           <p className="py-4 text-gray-50">↓</p>
         </div>
         <div className="overflow-x-auto">
           <p className={classes.gaming}>{AA}</p>
+          <div className="my-12">
+            <pre className={classes.gaming}>{AA}</pre>
+          </div>
+        </div>
+        <div className="mt-12">
+          <TwitterShare />
         </div>
       </div>
-      <div className="fixed right-2 bottom-2">
-        <TwitterShare />
+      <div className="fixed left-0 bottom-0 h-20 w-20">
+        <GitHubLink />
       </div>
     </>
   );
