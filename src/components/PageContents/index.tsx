@@ -38,7 +38,7 @@ export const PageContents: React.VFC<{ query?: string }> = ({ query }) => {
             value={AA}
             onChange={(e) => {
               setAA(e.target.value);
-              console.log(encodeURI(e.target.value));
+              // console.log(encodeURI(e.target.value));
             }}
           ></textarea>
         </div>
@@ -57,12 +57,10 @@ export const PageContents: React.VFC<{ query?: string }> = ({ query }) => {
             <pre className={classes.gaming}>{AA}</pre>
           </div>
         </div>
-        <div className="mt-12">
+        <div className="mt-12 flex flex-wrap gap-2">
           <TwitterShare />
+          <GitHubLink />
         </div>
-      </div>
-      <div className="fixed left-0 bottom-0 h-20 w-20">
-        <GitHubLink />
       </div>
     </>
   );
