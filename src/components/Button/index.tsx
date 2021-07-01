@@ -4,6 +4,7 @@ import classes from "./Button.module.scss";
 
 type Props = {
   onClick?: () => void;
+  classname?: string;
 };
 
 export const Button: React.FC<Props> = (props) => {
@@ -11,7 +12,6 @@ export const Button: React.FC<Props> = (props) => {
     <button
       className={classNames(
         "leading-8",
-        "ml-2",
         "px-2",
         "text-gray-50",
         "rounded-md",
@@ -23,7 +23,8 @@ export const Button: React.FC<Props> = (props) => {
         "focus:ring-indigo-200",
         "focus:ring-opacity-50",
         "break-normal",
-        classes.button
+        classes.button,
+        props.classname
       )}
       onClick={props.onClick}
     >

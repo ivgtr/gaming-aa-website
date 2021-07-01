@@ -8,7 +8,7 @@ type Props = {
 
 export const PageContentsButtons: React.VFC<Props> = React.memo(({ aa_samples, setAA }) => {
   return (
-    <div className="flex">
+    <div className="flex flex-wrap">
       {aa_samples.map((sample, index) => {
         return (
           <Button
@@ -16,6 +16,7 @@ export const PageContentsButtons: React.VFC<Props> = React.memo(({ aa_samples, s
               setAA(decodeURI(sample.value));
             }}
             key={index}
+            classname="mr-2 last:mr-0 mt-2"
           >
             {sample.title}
           </Button>
@@ -25,6 +26,7 @@ export const PageContentsButtons: React.VFC<Props> = React.memo(({ aa_samples, s
         onClick={() => {
           setAA("");
         }}
+        classname="mr-2 last:mr-0 mt-2"
       >
         リセット
       </Button>

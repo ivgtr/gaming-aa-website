@@ -8,12 +8,12 @@ type Props = {
 export const PageContentsPalettes: React.VFC<Props> = React.memo(
   ({ color_samples, setPalette }) => {
     return (
-      <div className="flex">
+      <div className="flex flex-wrap">
         {color_samples.map((sample, i) => {
           return (
             <div
               key={i}
-              className="flex ml-2"
+              className="flex mr-2 last:mr-0 mt-2"
               onClick={() => {
                 setPalette(sample.palette);
               }}

@@ -40,10 +40,10 @@ export const PageContents: React.VFC<{ query?: string }> = ({ query }) => {
             }}
           ></textarea>
         </div>
-        <div className="mt-4">
+        <div className="mt-2">
           <PageContentsButtons aa_samples={sampleJson.aa_samples} setAA={setAA} />
         </div>
-        <div className="mt-4">
+        <div className="mt-2">
           <PageContentsPalettes color_samples={sampleJson.color_samples} setPalette={setPalette} />
         </div>
         <div>
