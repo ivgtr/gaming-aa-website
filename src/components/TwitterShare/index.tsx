@@ -1,12 +1,11 @@
 import React from "react";
-import envJson from "../../assets/json/env.json";
 import classes from "./TwitterShare.module.scss";
 
-export const TwitterShare: React.VFC = () => {
+export const TwitterShare: React.VFC<{ url: string }> = ({ url }) => {
   return (
     <button className={classes.button}>
       <a
-        href={`https://twitter.com/share?url=${envJson.url}&text=次の時代はGaming%20AA`}
+        href={`https://twitter.com/share?url=${url}&text=次の時代はGaming%20AA`}
         className={classes.link}
         target="_blank"
         rel="noopener noreferrer"

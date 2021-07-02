@@ -20,11 +20,21 @@ export default async function Api(
   request: NextApiRequest,
   response: NextApiResponse
 ): Promise<void> {
-  console.log(request.query.text);
-  const aaText = decodeURI(String(sampleJson.aa_samples[0].value));
+  const { text } = request.query;
+  if (!text) {
+    response.writeHead(404);
+    response.end();
+    return;
+  }
+
+  const decodeText = decodeURIComponent(
+    String(request.query.text) || sampleJson.aa_samples[0].value
+  );
+
+  const flag = checkLanguage(decodeText);
 
   try {
-    const buf = createImage(aaText);
+    const buf = createImage(decodeText, flag);
 
     response.writeHead(200, {
       "Content-Type": "image/png",
@@ -39,10 +49,22 @@ export default async function Api(
   }
 }
 
-function createImage(aaText: string): Buffer {
+function checkLanguage(decodeText: string): boolean {
+  let flag: boolean = false;
+  for (let i = 0; i < decodeText.length; i++) {
+    const code = decodeText.charCodeAt(i);
+    if (code >= 256) {
+      flag = true;
+      break;
+    }
+  }
+  return flag;
+}
+
+function createImage(aaText: string, flag: boolean): Buffer {
   const width = 1200 as const;
   const height = 630 as const;
-  const fontSizeLimit = 480 as const;
+  const padding = 40 as const;
 
   const canvas = createCanvas(width, height);
   const ctx = canvas.getContext("2d");
@@ -52,11 +74,11 @@ function createImage(aaText: string): Buffer {
   ctx.fillRect(0, 0, width, height);
 
   // AA text
-  const aaTextCol = aaText.split("\n").length;
+  const aaTextCol = aaText.split("\n").length * 1.1618;
   const aaTextRow = Math.max(...aaText.split("\n").map((i) => i.length));
 
-  const fontSize = Math.min(fontSizeLimit / aaTextCol, (fontSizeLimit * 3) / aaTextRow);
-  ctx.font = `${fontSize}px Saitamaar`;
+  const fontSize = Math.min((height - padding) / aaTextCol, (width - padding) / aaTextRow);
+  ctx.font = `${fontSize}px ${flag ? "Saitamaar" : `"Courier New", courier, monospace`}`;
 
   const gradient = ctx.createLinearGradient(0, 0, width, height);
   const line = sampleJson.color_samples[0].palette.length;
@@ -67,7 +89,7 @@ function createImage(aaText: string): Buffer {
 
   ctx.fillStyle = gradient;
   const metrics = ctx.measureText(aaText);
-  const aaTextHeight = aaTextCol * fontSize * 1.1618;
+  const aaTextHeight = aaTextCol * fontSize;
   ctx.textBaseline = "top";
   ctx.fillText(aaText, width / 2 - metrics.width / 2, height / 2 - aaTextHeight / 2);
 

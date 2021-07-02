@@ -13,7 +13,7 @@ export const PageContentsButtons: React.VFC<Props> = React.memo(({ aa_samples, s
         return (
           <Button
             onClick={() => {
-              setAA(decodeURI(sample.value));
+              setAA(decodeURIComponent(sample.value));
             }}
             key={index}
             classname="mt-2"
