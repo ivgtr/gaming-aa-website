@@ -6,6 +6,10 @@ import { TwitterShare } from "../TwitterShare";
 import classes from "./PageContents.module.scss";
 import { PageContentsButtons } from "./PageContentsButtons";
 
+const encodeText = (text: string) => {
+  return encodeURIComponent(text);
+};
+
 export const PageContents: React.VFC<{ query?: string }> = ({ query }) => {
   const [AA, setAA] = useState<string>("");
 
@@ -26,7 +30,7 @@ export const PageContents: React.VFC<{ query?: string }> = ({ query }) => {
             value={AA}
             onChange={(e) => {
               setAA(e.target.value);
-              // console.log(encodeURIComponent(e.target.value));
+              // console.log(encodeText(e.target.value));
             }}
           ></textarea>
         </div>
@@ -43,9 +47,7 @@ export const PageContents: React.VFC<{ query?: string }> = ({ query }) => {
           </div>
         </div>
         <div className="mt-12 flex flex-wrap gap-2">
-          <TwitterShare
-            url={AA.length > 0 ? `${envJson.url}/aa/${encodeURIComponent(AA)}` : envJson.url}
-          />
+          <TwitterShare url={AA.length > 0 ? `${envJson.url}/aa/${encodeText(AA)}` : envJson.url} />
           <GitHubLink />
         </div>
       </div>

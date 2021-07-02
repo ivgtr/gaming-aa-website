@@ -29,6 +29,7 @@ export default function AAPage({ text }: ServerSideProps) {
   const title = "Gaming AA Website";
   const description = "次の時代はGaming Ascii Art です。乗り遅れないで。";
   const AAText = encodeURIComponent(text);
+
   return (
     <>
       <Head>
