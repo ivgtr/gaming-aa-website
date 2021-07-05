@@ -16,10 +16,10 @@ registerFont(fontFile, {
   family: "Saitamaar",
 });
 
-const jaFont = `"Saitamaar", "Courier New", courier, monospace, "Noto Sans JP", -apple-system,
+const jaFont = `"Saitamaar", "Noto Sans JP", -apple-system,
     blinkmacsystemfont, ヒラギノ角ゴ pro w3, hiragino kaku gothic pro, roboto, yugothic, yu gothic,
     游ゴシック体, 游ゴシック, メイリオ, meiryo, ｍｓ ｐゴシック, ms pgothic, sans-serif`;
-const enFont = `"Courier New", courier, monospace, "Saitamaar", "Noto Sans JP", -apple-system,
+const enFont = `"Courier New", courier, monospace, "Noto Sans JP", -apple-system,
     blinkmacsystemfont, ヒラギノ角ゴ pro w3, hiragino kaku gothic pro, roboto, yugothic, yu gothic,
     游ゴシック体, 游ゴシック, メイリオ, meiryo, ｍｓ ｐゴシック, ms pgothic, sans-serif`;
 
