@@ -34,7 +34,7 @@ const ShareUrlForm: React.VFC<{ url: string }> = React.memo(({ url }) => {
         <button
           onClick={handleClick}
           className={classNames(
-            "absolute right-0 top-0 h-full w-12 text-gray-50 bg-mono rounded-r-sm",
+            "absolute right-0 top-0 h-full w-12 text-gray-50 bg-mono rounded-r-sm font-bold",
             classes.button
           )}
         >
@@ -63,7 +63,7 @@ export const ShareBox: React.VFC<{ text: string }> = React.memo(({ text }) => {
   }, [shareUrl]);
 
   return (
-    <div className={classNames("flex items-center gap-2 w-full", classes.box)}>
+    <div className={classNames("flex items-center gap-4 w-full", classes.box)}>
       <ShareUrlForm url={shareUrl} />
       <ShareTweetButton url={tweetUrl} />
     </div>

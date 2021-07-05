@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./GitHubLink.module.scss";
 
-export const GitHubLink = () => {
+export const GitHubLink = React.memo(() => {
   return (
     <button className={classes.button}>
       <a
@@ -16,4 +16,4 @@ export const GitHubLink = () => {
       </a>
     </button>
   );
-};
+});

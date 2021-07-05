@@ -11,9 +11,9 @@ export const Button: React.FC<Props> = (props) => {
   return (
     <button
       className={classNames(
-        "leading-8",
+        "pt-1",
         "px-2",
-        "text-gray-50",
+        "relative",
         "rounded-md",
         "border",
         "border-gray-500",
@@ -28,7 +28,7 @@ export const Button: React.FC<Props> = (props) => {
       )}
       onClick={props.onClick}
     >
-      {props.children}
+      <span className="text-gray-50 text-base h-4 leading-4 align-middle">{props.children}</span>
     </button>
   );
 };
