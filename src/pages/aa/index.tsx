@@ -1,5 +1,6 @@
 import { GetServerSidePropsContext, NextPage } from "next";
 import Head from "next/head";
+import pako from "pako";
 import React from "react";
 import envJson from "../../assets/json/env.json";
 import { PageContents } from "../../components/PageContents";
@@ -13,9 +14,11 @@ type ServerSideProps = {
 
 export async function getServerSideProps(context: GetServerSidePropsContext<ServerSideProps>) {
   if (context.query?.text) {
+    const buf = Buffer.from(context.query?.text as string, "base64").toString("utf-8");
+    const text = pako.inflateRaw(buf, { to: "string" });
     return {
       props: {
-        text: context.query?.text,
+        text: decodeURIComponent(text),
       },
     };
   }

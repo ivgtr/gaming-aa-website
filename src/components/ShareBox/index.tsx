@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import pako from "pako";
 import React, { useCallback } from "react";
 import { useClipboard } from "use-clipboard-copy";
 import envJson from "../../assets/json/env.json";
@@ -49,7 +50,9 @@ export const ShareBox: React.VFC<{ text: string }> = React.memo(({ text }) => {
   const shareUrl = React.useMemo(() => {
     if (text) {
       const url = new URL(`${envJson.url}/aa`);
-      url.searchParams.set("text", text);
+      const buf = pako.deflateRaw(encodeURIComponent(text), { to: "string" });
+      const base64 = Buffer.from(buf).toString("base64");
+      url.searchParams.set("text", base64);
       return url.toString();
     } else return envJson.url;
   }, [text]);

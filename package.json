@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@types/node": "^15.12.5",
+    "@types/pako": "^1.0.1",
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.8",
     "autoprefixer": "^10.2.6",
@@ -40,6 +41,7 @@
     "classnames": "^2.3.1",
     "data-uri-to-buffer": "^3.0.1",
     "next": "^11.0.1",
+    "pako": "^1.0.11",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "use-clipboard-copy": "^0.2.0"
