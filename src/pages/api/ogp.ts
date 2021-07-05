@@ -16,38 +16,12 @@ registerFont(fontFile, {
   family: "Saitamaar",
 });
 
-export default async function Api(
-  request: NextApiRequest,
-  response: NextApiResponse
-): Promise<void> {
-  const { text } = request.query;
-  if (!text) {
-    response.writeHead(404);
-    response.end();
-    return;
-  }
-
-  const decodeText = decodeURIComponent(
-    String(request.query.text) || sampleJson.aa_samples[0].value
-  );
-
-  const flag = checkLanguage(decodeText);
-
-  try {
-    const buf = createImage(decodeText, flag);
-
-    response.writeHead(200, {
-      "Content-Type": "image/png",
-      "Content-Length": buf.length,
-      // "Cache-Control": "max-age=3600",
-    });
-    response.end(buf, "binary");
-  } catch {
-    response.writeHead(404);
-    response.end();
-    return;
-  }
-}
+const jaFont = `"Saitamaar", "Courier New", courier, monospace, "Noto Sans JP", -apple-system,
+    blinkmacsystemfont, ヒラギノ角ゴ pro w3, hiragino kaku gothic pro, roboto, yugothic, yu gothic,
+    游ゴシック体, 游ゴシック, メイリオ, meiryo, ｍｓ ｐゴシック, ms pgothic, sans-serif`;
+const enFont = `"Courier New", courier, monospace, "Saitamaar", "Noto Sans JP", -apple-system,
+    blinkmacsystemfont, ヒラギノ角ゴ pro w3, hiragino kaku gothic pro, roboto, yugothic, yu gothic,
+    游ゴシック体, 游ゴシック, メイリオ, meiryo, ｍｓ ｐゴシック, ms pgothic, sans-serif`;
 
 function checkLanguage(decodeText: string): boolean {
   let flag: boolean = false;
@@ -78,7 +52,7 @@ function createImage(aaText: string, flag: boolean): Buffer {
   const aaTextRow = Math.max(...aaText.split("\n").map((i) => i.length));
 
   const fontSize = Math.min((height - padding) / aaTextCol, (width - padding) / aaTextRow);
-  ctx.font = `${fontSize}px ${flag ? "Saitamaar" : `"Courier New", courier, monospace`}`;
+  ctx.font = `${fontSize}px ${flag ? jaFont : enFont}`;
 
   const gradient = ctx.createLinearGradient(0, 0, width, height);
   const line = sampleJson.color_samples[0].palette.length;
@@ -94,4 +68,35 @@ function createImage(aaText: string, flag: boolean): Buffer {
   ctx.fillText(aaText, width / 2 - metrics.width / 2, height / 2 - aaTextHeight / 2);
 
   return canvas.toBuffer();
+}
+
+export default async function Api(
+  request: NextApiRequest,
+  response: NextApiResponse
+): Promise<void> {
+  const { text } = request.query;
+  if (!text) {
+    response.writeHead(404);
+    response.end();
+    return;
+  }
+
+  const decodeText = decodeURI(String(request.query.text) || sampleJson.aa_samples[0].value);
+
+  const flag = checkLanguage(decodeText);
+
+  try {
+    const buf = createImage(decodeText, flag);
+
+    response.writeHead(200, {
+      "Content-Type": "image/png",
+      "Content-Length": buf.length,
+      "Cache-Control": "max-age=86400",
+    });
+    response.end(buf, "binary");
+  } catch {
+    response.writeHead(404);
+    response.end();
+    return;
+  }
 }

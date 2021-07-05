@@ -23,10 +23,8 @@ const ShareUrlForm: React.VFC<{ url: string }> = React.memo(({ url }) => {
   }, [clipboard, url]);
 
   return (
-    <form className="py-2" onSubmit={(e) => e.preventDefault()}>
-      <div
-        className={classNames("relative rounded-sm overflow-hidden max-w-lg w-full", classes.box)}
-      >
+    <form className="py-2 max-w-lg w-full" onSubmit={(e) => e.preventDefault()}>
+      <div className={classNames("relative rounded-sm overflow-hidden w-full", classes.input_box)}>
         <input
           type="text"
           readOnly
@@ -65,7 +63,7 @@ export const ShareBox: React.VFC<{ text: string }> = React.memo(({ text }) => {
   }, [shareUrl]);
 
   return (
-    <div className="grid items-center gap-2">
+    <div className={classNames("flex items-center gap-2 w-full", classes.box)}>
       <ShareUrlForm url={shareUrl} />
       <ShareTweetButton url={tweetUrl} />
     </div>

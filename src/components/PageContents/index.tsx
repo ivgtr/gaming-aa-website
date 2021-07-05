@@ -37,8 +37,8 @@ export const PageContents: React.VFC<{ query?: string }> = ({ query }) => {
             className={classNames(classes.textarea, lang === "ja" ? classes.ja : classes.en)}
             value={AA}
             onChange={(e) => {
+              e.preventDefault();
               setAA(e.target.value);
-              // console.log(encodeText(e.target.value));
             }}
           ></textarea>
         </div>

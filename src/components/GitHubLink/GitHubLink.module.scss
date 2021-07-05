@@ -1,40 +1,15 @@
 .button {
-  width: 74px;
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  background-color: #1a1414;
+  border-radius: 50%;
 }
-
 .link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  font-size: 11px;
-  line-height: 18px;
-  color: #1a1414;
-  background: rgb(229, 231, 235);
-  border-radius: 3px;
-}
-
-.text {
-  display: inline-block;
-  margin-left: 3px;
-  margin-left: 2px;
-  font-family: "Noto Sans JP", -apple-system, blinkmacsystemfont, ヒラギノ角ゴ pro w3,
-    hiragino kaku gothic pro, roboto, yugothic, yu gothic, 游ゴシック体, 游ゴシック, メイリオ,
-    meiryo, ｍｓ ｐゴシック, ms pgothic, sans-serif;
-  font-weight: bold;
-}
-
-.icon {
-  position: relative;
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  line-height: 0;
   & > svg {
     width: 100%;
     height: 100%;
-    fill: #1a1414;
+    fill: #fff;
     fill-rule: evenodd;
   }
 }

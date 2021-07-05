@@ -3,6 +3,7 @@ import Head from "next/head";
 import React from "react";
 import envJson from "../../assets/json/env.json";
 import { PageContents } from "../../components/PageContents";
+import { PageFooter } from "../../components/PageFooter";
 import { PageHeader } from "../../components/PageHeader";
 import { PageWrapper } from "../../components/PageWrapper";
 
@@ -62,6 +63,7 @@ const AAPage: NextPage<ServerSideProps> = ({ text }) => {
       <PageWrapper>
         <PageHeader />
         <PageContents query={text} />
+        <PageFooter />
       </PageWrapper>
     </>
   );
