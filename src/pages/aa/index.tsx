@@ -1,4 +1,4 @@
-import { GetServerSidePropsContext, GetServerSidePropsResult } from "next";
+import { GetServerSidePropsContext, NextPage } from "next";
 import Head from "next/head";
 import React from "react";
 import envJson from "../../assets/json/env.json";
@@ -10,13 +10,11 @@ type ServerSideProps = {
   text: string;
 };
 
-export async function getServerSideProps(
-  context: GetServerSidePropsContext<ServerSideProps>
-): Promise<GetServerSidePropsResult<ServerSideProps>> {
-  if (context.params?.text) {
+export async function getServerSideProps(context: GetServerSidePropsContext<ServerSideProps>) {
+  if (context.query?.text) {
     return {
       props: {
-        text: String(context.params?.text),
+        text: context.query?.text,
       },
     };
   }
@@ -25,10 +23,24 @@ export async function getServerSideProps(
   };
 }
 
-export default function AAPage({ text }: ServerSideProps) {
+const AAPage: NextPage<ServerSideProps> = ({ text }) => {
   const title = "Gaming AA Website";
   const description = "次の時代はGaming Ascii Art です。乗り遅れないで。";
-  const AAText = encodeURIComponent(text);
+  const ogUrl = React.useMemo(() => {
+    if (text) {
+      const url = new URL(`${envJson.url}/aa`);
+      url.searchParams.set("text", text);
+      return url.toString();
+    } else return envJson.url;
+  }, [text]);
+
+  const ogpUrl = React.useMemo(() => {
+    if (text) {
+      const url = new URL(`${envJson.url}/api/ogp`);
+      url.searchParams.set("text", text);
+      return url.toString();
+    } else return envJson.url;
+  }, [text]);
 
   return (
     <>
@@ -40,17 +52,19 @@ export default function AAPage({ text }: ServerSideProps) {
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`${envJson.url}/aa/${AAText}`} />
+        <meta property="og:url" content={ogUrl} />
         <meta property="og:site_name" content={title} />
-        <meta property="og:image" content={`${envJson.url}/api/ogp?text=${AAText}`} />
+        <meta property="og:image" content={ogpUrl} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content="@ivgtr" />
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <PageWrapper>
         <PageHeader />
-        <PageContents query={AAText} />
+        <PageContents query={text} />
       </PageWrapper>
     </>
   );
-}
+};
+
+export default AAPage;

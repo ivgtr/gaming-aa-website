@@ -1,21 +1,29 @@
+import classNames from "classnames";
 import React, { useEffect, useState } from "react";
-import envJson from "../../assets/json/env.json";
 import sampleJson from "../../assets/json/sample.json";
-import { GitHubLink } from "../GitHubLink";
-import { TwitterShare } from "../TwitterShare";
+import { ShareBox } from "../ShareBox";
 import classes from "./PageContents.module.scss";
 import { PageContentsButtons } from "./PageContentsButtons";
 
-const encodeText = (text: string) => {
-  return encodeURIComponent(text);
-};
+function checkLanguage(decodeText: string): boolean {
+  let flag: boolean = false;
+  for (let i = 0; i < decodeText.length; i++) {
+    const code = decodeText.charCodeAt(i);
+    if (code >= 256) {
+      flag = true;
+      break;
+    }
+  }
+  return flag;
+}
 
 export const PageContents: React.VFC<{ query?: string }> = ({ query }) => {
-  const [AA, setAA] = useState<string>("");
+  const [AA, setAA] = useState<string>(query ? decodeURI(query) : "");
+  const [lang, setLang] = useState<"ja" | "en">("ja");
 
   useEffect(() => {
-    if (query) setAA(decodeURIComponent(query));
-  }, [query]);
+    setLang(checkLanguage(AA) ? "ja" : "en");
+  }, [AA]);
 
   return (
     <>
@@ -26,7 +34,7 @@ export const PageContents: React.VFC<{ query?: string }> = ({ query }) => {
             id="aa-input"
             rows={10}
             placeholder="入力してください"
-            className={classes.textarea}
+            className={classNames(classes.textarea, lang === "ja" ? classes.ja : classes.en)}
             value={AA}
             onChange={(e) => {
               setAA(e.target.value);
@@ -40,16 +48,15 @@ export const PageContents: React.VFC<{ query?: string }> = ({ query }) => {
         <div>
           <p className="py-4 text-gray-50">↓</p>
         </div>
-        <div className="overflow-x-auto">
-          <p className={classes.gaming}>{AA}</p>
-          <div className="my-12">
-            <pre className={classes.gaming}>{AA}</pre>
-          </div>
+        <div className="overflow-x-auto pb-4">
+          <p className={classNames(classes.gaming, lang === "ja" ? classes.ja : classes.en)}>
+            {AA}
+          </p>
         </div>
-        <div className="mt-12 flex flex-wrap gap-2">
-          <TwitterShare url={AA.length > 0 ? `${envJson.url}/aa/${encodeText(AA)}` : envJson.url} />
-          <GitHubLink />
-        </div>
+        <section className="mt-12">
+          <h3 className={classNames("text-gray-50", classes.title)}>Share</h3>
+          <ShareBox text={AA} />
+        </section>
       </div>
     </>
   );

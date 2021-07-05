@@ -1,0 +1,33 @@
+.button {
+  background: #101013;
+  &:hover {
+    opacity: 0.9;
+    transition: opacity 0.1s ease-in;
+  }
+}
+
+.box {
+  box-shadow: 0 0 5px #40e0d0, 0 0 10px #e0d041;
+}
+
+.title {
+  text-shadow: 0 0 5px #40e0d0, 0 0 10px #e0d041;
+}
+
+.tweet {
+  &_button {
+    width: 32px;
+    height: 32px;
+    color: #fff;
+    background-color: #1b95e0;
+    border-radius: 50%;
+  }
+  &_link {
+    & > svg {
+      width: 100%;
+      height: 100%;
+      fill: #fff;
+      fill-rule: evenodd;
+    }
+  }
+}

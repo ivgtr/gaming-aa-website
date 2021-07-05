@@ -1,3 +1,19 @@
+.ja {
+  font-family: "Saitamaar", "Courier New", courier, monospace, "Noto Sans JP", -apple-system,
+    blinkmacsystemfont, ヒラギノ角ゴ pro w3, hiragino kaku gothic pro, roboto, yugothic, yu gothic,
+    游ゴシック体, 游ゴシック, メイリオ, meiryo, ｍｓ ｐゴシック, ms pgothic, sans-serif;
+}
+
+.en {
+  font-family: "Courier New", courier, monospace, "Saitamaar", "Noto Sans JP", -apple-system,
+    blinkmacsystemfont, ヒラギノ角ゴ pro w3, hiragino kaku gothic pro, roboto, yugothic, yu gothic,
+    游ゴシック体, 游ゴシック, メイリオ, meiryo, ｍｓ ｐゴシック, ms pgothic, sans-serif;
+}
+
+.title {
+  text-shadow: 0 0 5px #40e0d0, 0 0 10px #e0d041;
+}
+
 .textarea {
   box-sizing: border-box;
   width: 100%;
