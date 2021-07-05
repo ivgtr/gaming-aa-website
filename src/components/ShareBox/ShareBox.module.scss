@@ -7,7 +7,8 @@
 }
 
 .input_box {
-  box-shadow: 0 0 5px #40e0d0, 0 0 10px #e0d041;
+  // box-shadow: 0 0 5px #40e0d0, 0 0 10px #e0d041;
+  filter: drop-shadow(0 0 5px #40e0d0);
 }
 
 .title {

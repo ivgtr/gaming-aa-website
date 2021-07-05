@@ -25,7 +25,7 @@ const ShareUrlForm: React.VFC<{ url: string }> = React.memo(({ url }) => {
 
   return (
     <form className="py-2 max-w-lg w-full" onSubmit={(e) => e.preventDefault()}>
-      <div className={classNames("relative rounded-sm overflow-hidden w-full", classes.input_box)}>
+      <div className={classNames("relative rounded-sm w-full", classes.input_box)}>
         <input
           type="text"
           readOnly

@@ -30,7 +30,6 @@
   padding: 0 1em;
   font-size: 1.2rem;
   line-height: 1.1618em;
-  text-shadow: 0 0 1em #fff;
   white-space: pre;
   background: -webkit-linear-gradient(
     0deg,
@@ -44,9 +43,9 @@
 
 @keyframes gradient {
   from {
-    filter: hue-rotate(0deg);
+    filter: drop-shadow(0 0 3px #40e0d0) hue-rotate(0deg);
   }
   to {
-    filter: hue-rotate(360deg);
+    filter: drop-shadow(0 0 3px #d041e0) hue-rotate(360deg);
   }
 }
